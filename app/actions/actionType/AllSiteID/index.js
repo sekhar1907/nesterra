@@ -1,0 +1,3 @@
+export const ALL_SITE_ID = 'ALL_ITE_ID';
+export const FILTER_BY_LOC_ID_OR_SITE_SITE_ID =
+  'FILTER_BY_LOC_ID_OR_SITE_SITE_ID';

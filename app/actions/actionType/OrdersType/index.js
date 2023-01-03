@@ -1,0 +1,1 @@
+const ALL_ORDERS_TYPE = 'ALL_ORDERS_TYPE';

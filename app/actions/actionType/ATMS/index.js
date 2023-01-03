@@ -1,0 +1,3 @@
+export const ALL_ATMS = 'ALL_ATMS';
+export const ALL_ATMS_FILTER_BY_ACTIVE = 'ALL_ATMS_FILTER_BY_ACTIVE';
+export const ALL_ATMS_ALL = 'ALL_ATMS_ALL';

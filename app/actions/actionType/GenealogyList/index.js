@@ -1,0 +1,1 @@
+export const GENEOLOGY_LIST = 'GENEOLOGY_LIST';
