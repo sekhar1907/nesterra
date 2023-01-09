@@ -8,7 +8,7 @@ import {
   ORDER_GET_ONLY_VENDOR,
   ORDER_FILTER_BY_DATE,
 } from '../../../../../actions/actionType/action.OrdersForTab';
-import DatePickerView from './../../../../../components/DatePickerView';
+import DatePickerView from './../../../../../components/';
 import moment from 'moment';
 import {warinng} from '../../../../../components/helper';
 
