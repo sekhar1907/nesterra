@@ -133,4 +133,14 @@ const styles = StyleSheet.create({
     // marginLeft: 20,
     // marginRight: 20,
   },
+  mainLeft: {
+    width: '90%',
+    height: 40,
+    backgroundColor: '#c3c3c3',
+    alignSelf: 'center',
+    flexDirection: 'row',
+
+    // marginLeft: 20,
+    // marginRight: 20,
+  },
 });
