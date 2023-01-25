@@ -140,6 +140,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
 
+    width: '90%',
+    height: 40,
+    backgroundColor: '#c3c3c3',
+    alignSelf: 'center',
+    flexDirection: 'row',
+
     // marginLeft: 20,
     // marginRight: 20,
   },
