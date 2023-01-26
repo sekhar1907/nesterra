@@ -388,6 +388,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'black',
     borderBottomWidth: 1,
   },
+   secondTableColum: {
+    width: '50%',
+    height: '100%',
+    borderRightColor: 'black',
+    borderRightWidth: 1,
+    paddingLeft: 10,
+    justifyContent: 'center',
+  },
   secondTableColum: {
     width: '50%',
     height: '100%',
