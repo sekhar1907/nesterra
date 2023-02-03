@@ -67,7 +67,7 @@ const BottomSheetView = ({
 
   const data = [
     {id: 0, name: 'INFO', isActive: true},
-    {id: 1, name: 'PICS', isActive: false},
+    {id: 1, name: 'Images', isActive: false},
     {id: 2, name: 'HOURS', isActive: false},
     {id: 3, name: 'ATMS', isActive: false},
     {id: 4, name: 'CIRCUITS', isActive: false},
@@ -103,7 +103,7 @@ const BottomSheetView = ({
         setDevicesLoding(true);
         get_all_devices_inventory(location_data.Location_ID, setDevicesLoding);
         break;
-      case name === 'PICS':
+      case name === 'Images':
         setDataLoder(true);
         fetchNearestPlacesFromGoogle();
         break;
