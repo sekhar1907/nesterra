@@ -139,4 +139,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
   },
+  container: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
 });
