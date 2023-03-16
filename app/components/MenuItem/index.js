@@ -53,4 +53,9 @@ const MenuItem = ({src, onPress, title}) => {
 
 export default MenuItem;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  header:{
+    width:'100%',
+    height:100
+  }
+});
