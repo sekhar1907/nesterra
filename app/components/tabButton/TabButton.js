@@ -1,8 +1,10 @@
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import React from 'react';
+import {useSelector} from 'react-redux';
 const {width} = Dimensions.get('screen');
 
 const TabButton = ({focused, imagePath, name}) => {
+  const {appearanceType} = useSelector(state => state.appearanceType);
   return (
     <>
       <View
@@ -26,7 +28,14 @@ const TabButton = ({focused, imagePath, name}) => {
           }}> */}
         <Image
           style={{
-            tintColor: focused ? '#0A7AFF' : 'gray',
+            tintColor:
+              appearanceType == 'dark'
+                ? focused
+                  ? '#0A7AFF' //
+                  : 'white'
+                : focused
+                ? '#0A7AFF' //
+                : 'black',
             resizeMode: 'contain',
             // marginVertical: 2,
             // marginTop: 2,
@@ -47,7 +56,14 @@ const TabButton = ({focused, imagePath, name}) => {
             style={{
               fontSize: 11,
               fontWeight: '800',
-              color: focused ? '#0A7AFF' : 'gray',
+              color:
+                appearanceType == 'dark'
+                  ? focused
+                    ? '#0A7AFF' //
+                    : 'white'
+                  : focused
+                  ? '#0A7AFF' //
+                  : 'black',
             }}>
             {name}
           </Text>
