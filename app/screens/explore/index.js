@@ -911,10 +911,22 @@ const Explore = ({
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
+            Alert.alert('Alert Title', 'My Alert Msg', [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {
+                text: 'Confirm',
+                onPress: () => {
+                  getChange();
+                  // get_coordinates();
+                  setstreetImage(false);
+                },
+              },
+            ]);
             // dispatch({type: CIRCUIT_ID});
-            getChange();
-            // get_coordinates();
-            setstreetImage(false);
           }}
           style={styles.currentLocation1}>
           <SimpleLineIcons
