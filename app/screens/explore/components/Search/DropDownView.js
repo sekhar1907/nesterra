@@ -6,10 +6,11 @@ import {
   Dimensions,
 } from 'react-native';
 import React, {memo, useCallback} from 'react';
+import {Portal, Modal} from 'react-native-paper';
 const {width} = Dimensions.get('screen');
 
 const w1 = width - 50;
-const w2 = (w1 / 100) * 30;
+const w2 = (w1 / 100) * 35;
 const ButtonView = ({setSearchView, title}) => {
   // console.log(id);
   return (
@@ -28,7 +29,13 @@ const ButtonView = ({setSearchView, title}) => {
   );
 };
 
-const DropDownView = ({setSearchView, searchView, setRander, setPlace}) => {
+const DropDownView = ({
+  setSearchView,
+  searchView,
+  setRander,
+  rander,
+  setPlace,
+}) => {
   const addSer = useCallback(() => {
     setSearchView('Address');
     setRander(false);
@@ -60,22 +67,44 @@ const DropDownView = ({setSearchView, searchView, setRander, setPlace}) => {
   }, [searchView]);
 
   return (
-    <View style={styles.rightVies1}>
-      <ButtonView setSearchView={addSer} id={'Address'} title="Address" />
-      <ButtonView setSearchView={atmSer} id={'AtmsId'} title="ATM ID" />
-      <ButtonView setSearchView={siteSer} id={'SiteId'} title="Site ID" />
-      <ButtonView setSearchView={branchSer} id={'BranchId'} title="Branch ID" />
-      <ButtonView
-        setSearchView={circuitSer}
-        id={'CircuitId'}
-        title="Circuit ID"
-      />
-      <ButtonView
-        setSearchView={devicesSer}
-        id={'DeviceId'}
-        title="Device ID"
-      />
-    </View>
+    <Portal>
+      <Modal
+        visible={rander}
+        onDismiss={() => {
+          // setCertifiedModal(false);
+          setRander(false);
+        }}
+        contentContainerStyle={styles.containerStyle}>
+        <ButtonView setSearchView={addSer} id={'Address'} title="Address" />
+        <ButtonView setSearchView={atmSer} id={'AtmsId'} title="ATM ID" />
+        <ButtonView setSearchView={siteSer} id={'SiteId'} title="Site ID" />
+        <ButtonView
+          setSearchView={branchSer}
+          id={'BranchId'}
+          title="Branch ID"
+        />
+        <ButtonView
+          setSearchView={circuitSer}
+          id={'CircuitId'}
+          title="Circuit ID"
+        />
+        <ButtonView
+          setSearchView={devicesSer}
+          id={'DeviceId'}
+          title="Device ID"
+        />
+        <ButtonView
+          setSearchView={devicesSer}
+          id={'office ID'}
+          title="Office ID"
+        />
+        <ButtonView
+          setSearchView={devicesSer}
+          id={'Property Name'}
+          title="Property Name"
+        />
+      </Modal>
+    </Portal>
   );
 };
 
@@ -83,10 +112,22 @@ export default memo(DropDownView);
 
 const styles = StyleSheet.create({
   rightVies1: {
-    marginTop: 133,
+    marginTop: 220,
     alignSelf: 'flex-end',
-    right: 25,
-    zIndex: 100,
+    right: 10,
+    // zIndex: 100,
+    position: 'absolute',
+    backgroundColor: 'white',
+    width: w2,
+    paddingVertical: 10,
+    borderColor: '#898989',
+    borderWidth: 1,
+  },
+  containerStyle: {
+    top: 110,
+    alignSelf: 'flex-end',
+    right: 10,
+    // zIndex: 100,
     position: 'absolute',
     backgroundColor: 'white',
     width: w2,
