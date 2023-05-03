@@ -14,7 +14,6 @@ const Button = ({title, buttonType, onPress}) => {
       <Text
         style={{
           color: title == buttonType ? 'white' : 'black',
-          fontWeight: 'bold',
         }}>
         {title}
       </Text>
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     width: '33.33%',
     height: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
+    justifyContent: 'center',
   },
 });
