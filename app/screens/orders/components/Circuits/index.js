@@ -21,8 +21,11 @@ import NoDataViewFlatList from '../../../../components/NoDataViewFlatList';
 import VendorButtonSheet from './VendorButtonSheet';
 import FlatListColumOther from './FlatListColumOther';
 import FlatListColum from './FlatListColum';
+import AddButton from '../../../../components/button/AddButton';
+import {useNavigation} from '@react-navigation/native';
 
 const Circuits = ({get_orders_for_tab, get_order_details}) => {
+  const navigation = useNavigation();
   const {ordersForTab} = useSelector(state => state.ordersForTab);
   const dispatch = useDispatch();
   const cirCuitRef = useRef(null);
@@ -150,13 +153,15 @@ const Circuits = ({get_orders_for_tab, get_order_details}) => {
           <>
             {/* ============TOOGLE=========== */}
             {switchView ? (
-              <ToggleView
-                name="Circuits"
-                size={'medium'}
-                length={ordersForTab.length}
-                alldata={allData}
-                activeFilter={fiterCircuitsActive}
-              />
+              <>
+                <ToggleView
+                  name="Circuits"
+                  // size={'medium'}
+                  length={ordersForTab.length}
+                  alldata={allData}
+                  activeFilter={fiterCircuitsActive}
+                />
+              </>
             ) : null}
             {/* ============TOOGLE=========== */}
           </>
@@ -179,6 +184,11 @@ const Circuits = ({get_orders_for_tab, get_order_details}) => {
           />
         </>
       )}
+      <AddButton
+        onPress={() => {
+          navigation.navigate('AddOrder');
+        }}
+      />
     </>
   );
 };
