@@ -1,50 +1,89 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
-import InputTypeView1 from '../../../InputTypeView/InputTypeView1';
 import {
   InputViewWithIcon,
   InputViewWithOutIcon,
 } from '../../../InputViewWithIcon';
-import InputView from '../../../InputView';
+import TextView from '../../../../../../components/TextView';
+
+import InputTypeView1 from '../../../InputTypeView/InputTypeView1';
 import {serviceType} from '../../../../../../utils/addOrders';
-import {ResetView} from '../../../CircleView';
+
+import SimpleCheckBox from '../../../../../../components/checkBox/SimpleCheckBox';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import TextInputView from '../Two/TextInputView';
+
 const Three = () => {
   const [text, setText] = React.useState('');
   return (
-    <View style={{flex: 1}}>
-      <ResetView />
-      {/* ================date picker=================== */}
+    <ScrollView>
       <View style={styles.itemWraper}>
-        <InputViewWithIcon text="Date Created" value="08/05/23" />
-        <InputViewWithOutIcon text="Order No" value="2897" />
+        <View style={styles.item}>
+          <InputTypeView1 title="Location Type" data={serviceType} />
+        </View>
+        <View style={styles.item}>
+          <InputTypeView1 title="Status" data={serviceType} />
+        </View>
       </View>
+      <View
+        style={{
+          width: '100%',
+          height: 40,
+          // backgroundColor: 'red',
 
-      {/* ================date picker=================== */}
-      <View style={styles.itemWraper}>
-        <View style={styles.item}>
-          <InputTypeView1 title="Order Type" data={serviceType} />
+          flexDirection: 'row',
+        }}>
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="Site Name" />
         </View>
-        <View style={styles.item}>
-          <InputTypeView1 title="Select Project" data={serviceType} />
-        </View>
-      </View>
-      <View style={styles.itemWraper}>
-        <View style={styles.item}>
-          <InputTypeView1 title="Service Category" data={serviceType} />
-        </View>
-        <View style={styles.item}>
-          <InputTypeView1 title="Select Project" data={serviceType} />
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="Smartsite Id" />
         </View>
       </View>
-      {/* ================date picker=================== */}
-      <View style={styles.itemWraper}>
-        <InputViewWithIcon text="Due Date" value="08/05/23" />
-        <InputViewWithOutIcon text="Date from today" value="2897" />
+      <View style={{...styles.itemWraper, marginTop: 30}}>
+        <View style={styles.item}>
+          <InputTypeView1 title="Street" data={serviceType} />
+        </View>
+        <View style={styles.item}>
+          <InputTypeView1 title="Branch ID" data={serviceType} />
+        </View>
       </View>
+      <View
+        style={{
+          width: '100%',
+          height: 40,
+          // backgroundColor: 'red',
 
-      {/* ================date picker=================== */}
-      <InputView />
-    </View>
+          flexDirection: 'row',
+        }}>
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="City" />
+        </View>
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="State / Province" />
+        </View>
+      </View>
+      <View
+        style={{
+          width: '100%',
+          height: 40,
+          // backgroundColor: 'red',
+          marginTop: 20,
+          flexDirection: 'row',
+        }}>
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="Zip" />
+        </View>
+        <View style={{width: '50%', height: 60}}>
+          <TextInputView margin={10} label="State / Province" />
+        </View>
+      </View>
+      <TextInputView margin={25} label="Site Access Restriction / Notes " />
+      <TextInputView margin={20} label="Special Requirements / Notes" />
+
+      <View style={{width: '100%', height: 300}}></View>
+      {/* <View style={{width: '100%', height: 300}}></View> */}
+    </ScrollView>
   );
 };
 
@@ -70,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 10,
     justifyContent: 'space-between',
-    marginTop: 15,
+    marginTop: 20,
   },
   item: {
     width: '48%',
@@ -104,5 +143,42 @@ const styles = StyleSheet.create({
     bottom: 60,
     left: 0,
     right: 0,
+  },
+  selectBox: {
+    width: '100%',
+    height: '100%',
+    // backgroundColor: 'blue',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'black',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+
+    paddingHorizontal: 10,
+  },
+  titleView: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#0472ef',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  titleView1: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#0472ef',
+    borderRadius: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+  },
+  selectBoxWraper: {
+    width: '100%',
+    height: 40,
+    // backgroundColor: 'red',
+    paddingHorizontal: 27,
   },
 });
