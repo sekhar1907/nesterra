@@ -192,4 +192,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   singleItem: {width: '48%', height: 60},
+  // singleItem: {width: '48%', height: 60},
 });
