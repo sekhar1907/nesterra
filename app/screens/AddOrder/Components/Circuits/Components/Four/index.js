@@ -193,4 +193,5 @@ const styles = StyleSheet.create({
   },
   singleItem: {width: '48%', height: 60},
   // singleItem: {width: '48%', height: 60},
+  // singleItem: {width: '48%', height: 60},
 });
