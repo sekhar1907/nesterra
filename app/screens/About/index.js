@@ -69,5 +69,9 @@ import {
   
   export default About;
   
-  const styles = StyleSheet.create({});
+  const styles = StyleSheet.create({
+    head:{
+      flex:1
+    }
+  });
   
