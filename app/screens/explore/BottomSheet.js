@@ -1,4 +1,11 @@
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {
+  StyleSheet,
+  Share,
+  TouchableOpacity,
+  Image,
+  Text,
+  View,
+} from 'react-native';
 import React, {useMemo, useRef, useEffect, useState, useCallback} from 'react';
 
 import BottomSheet, {BottomSheetFlatList} from '@gorhom/bottom-sheet';
@@ -17,6 +24,7 @@ import Devices from '../../components/BottomSheetTab/Devices';
 import Orders from '../../components/BottomSheetTab/Orders';
 import Atms from '../../components/BottomSheetTab/Atms';
 import Notes from '../../components/BottomSheetTab/Notes';
+
 import {
   SITE_ITEM,
   SITE_ITEM_REMOVE,
@@ -30,6 +38,7 @@ import {get_order} from '../../actions/order';
 import {getInventoryCircuit} from '../../actions/circuitInventory';
 import {getNotes} from './../../actions/Notes/index';
 import {copyText, tostalert} from '../../components/helper';
+import History from '../../components/BottomSheetTab/History';
 
 const BottomSheetView = ({
   notesRef,
@@ -48,6 +57,7 @@ const BottomSheetView = ({
   getInventoryCircuit,
   imageAddRef,
   setstreetImage,
+  setCertifiedModal,
 }) => {
   // console.log(cirCuitRef, bottomSheetRef,picRef );
   const snapPoints = useMemo(() => ['10%', '26%', '95%'], []);
@@ -66,14 +76,17 @@ const BottomSheetView = ({
   const myRef = useRef(null);
 
   const data = [
-    {id: 0, name: 'INFO', isActive: true},
-    {id: 1, name: 'Images', isActive: false},
-    {id: 2, name: 'HOURS', isActive: false},
-    {id: 3, name: 'ATMS', isActive: false},
-    {id: 4, name: 'CIRCUITS', isActive: false},
-    {id: 5, name: 'DEVICES', isActive: false},
-    {id: 6, name: 'ORDERS', isActive: false},
-    {id: 7, name: 'Notes', isActive: false},
+    {id: 0, name: 'Info', isActive: true},
+    {id: 1, name: 'History', isActive: false},
+
+    {id: 2, name: 'Hours', isActive: false},
+    {id: 3, name: 'Images', isActive: false},
+    {id: 4, name: 'Orders', isActive: false},
+    {id: 5, name: 'Circuits', isActive: false},
+    {id: 6, name: 'Devices', isActive: false},
+    // {id: 4, name: 'ATMS', isActive: false},
+
+    // {id: 8, name: 'Notes', isActive: false},
   ];
   const [item, setItem] = useState(0);
   const [data1, setData1] = useState(data);
@@ -93,13 +106,13 @@ const BottomSheetView = ({
         setAtmLoding(true);
         getAllAtms(location_data.Location_ID, setAtmLoding);
         break;
-      case name === 'CIRCUITS':
+      case name === 'Circuits':
         setcircuitLoding(true);
         getInventoryCircuit(location_data.Location_ID, setcircuitLoding);
         break;
-      case name === 'HOURS':
+      case name === 'Hours':
         break;
-      case name === 'DEVICES':
+      case name === 'Devices':
         setDevicesLoding(true);
         get_all_devices_inventory(location_data.Location_ID, setDevicesLoding);
         break;
@@ -107,14 +120,14 @@ const BottomSheetView = ({
         setDataLoder(true);
         fetchNearestPlacesFromGoogle();
         break;
-      case name === 'ORDERS':
+      case name === 'Orders':
         setOrderLoding(true);
         get_order(location_data.Location_ID, setOrderLoding);
         break;
-      case name === 'Notes':
-        setNotesLoding(true);
-        getNotes(setNotesLoding);
-        break;
+      // case name === 'Notes':
+      //   setNotesLoding(true);
+      //   getNotes(setNotesLoding);
+      //   break;
     }
   };
   const centerTab = i => {
@@ -125,19 +138,16 @@ const BottomSheetView = ({
       case item == 0:
         return <Info />;
       case item == 1:
-        return <Pics isLoding={isLoding} imageAddRef={imageAddRef} />;
+        return <History />;
       case item == 2:
         return <Hours />;
-
       case item == 3:
-        return (
-          <Atms
-            atmLoding={atmLoding}
-            setDetailsLoder={setDetailsLoder}
-            atmdDetailsRef={atmdDetailsRef}
-          />
-        );
+        return <Pics isLoding={isLoding} imageAddRef={imageAddRef} />;
       case item == 4:
+        return (
+          <Orders orderRefExplore={orderRefExplore} orderLoding={orderLoding} />
+        );
+      case item == 5:
         return (
           <Circuits
             circuitLoding={circuitLoding}
@@ -145,21 +155,24 @@ const BottomSheetView = ({
             bottomSheetRef={bottomSheetRef}
           />
         );
-
-      case item == 5:
+      case item == 6:
         return (
           <Devices
             deviceRefExplore={deviceRefExplore}
             devicesLoding={devicesLoding}
           />
         );
+      // case item == 4:
+      //   return (
+      //     <Atms
+      //       atmLoding={atmLoding}
+      //       setDetailsLoder={setDetailsLoder}
+      //       atmdDetailsRef={atmdDetailsRef}
+      //     />
+      //   );
 
-      case item == 6:
-        return (
-          <Orders orderRefExplore={orderRefExplore} orderLoding={orderLoding} />
-        );
-      case item == 7:
-        return <Notes notesLoding={notesLoding} />;
+      // case item == 8:
+      //   return <Notes notesLoding={notesLoding} />;
     }
   };
   const remove = id => {
@@ -240,6 +253,27 @@ const BottomSheetView = ({
         break;
     }
   }, []);
+  console.log(location_data);
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'React Native | A framework for building native apps using React',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <>
       <BottomSheet
@@ -266,13 +300,13 @@ const BottomSheetView = ({
         onChange={handleSheetChanges}>
         <View
           style={{
-            height: 155,
+            height: 165,
             width: '100%',
           }}>
           <View
             style={{
               width: '100%',
-              height: 100,
+              height: 120,
               flexDirection: 'row',
             }}>
             <TouchableOpacity
@@ -303,6 +337,19 @@ const BottomSheetView = ({
                 }}>
                 {location_data?.SubLocationType}
               </Text> */}
+              <View style={{width: '100%', flexDirection: 'row'}}>
+                <Text style={{fontSize: 16, marginLeft: 10, color: 'black'}}>
+                  Property Name:{' '}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    marginLeft: 10,
+                    color: 'black',
+                  }}>
+                  {location_data?.SubLocationType}
+                </Text>
+              </View>
               <View style={{width: '100%', flexDirection: 'row'}}>
                 <Text style={{fontSize: 16, marginLeft: 10, color: 'black'}}>
                   Sity Type:{' '}
@@ -389,11 +436,28 @@ const BottomSheetView = ({
                   alignItems: 'flex-end',
                   paddingRight: 8,
                 }}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onShare}>
                   <Text>
                     <EvilIcons name="share-apple" size={28} color="#007aff" />
                   </Text>
                   {/* <AntDesign name="upload" size={24} color="#007aff" /> */}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    setCertifiedModal(true);
+                  }}>
+                  <View style={{width: 22, height: 22, marginRight: 2}}>
+                    <Image
+                      source={require('../../images/Icons/checkedd.png')}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'cover',
+                        tintColor: '#2a95e7',
+                        marginRight: 10,
+                      }}
+                    />
+                  </View>
                 </TouchableOpacity>
                 {dataa ? (
                   <TouchableOpacity
@@ -439,11 +503,11 @@ const BottomSheetView = ({
                     centerTab(item.id);
                   }}
                   style={{
-                    width: 100,
+                    width: 80,
                     backgroundColor: 'red',
-                    height: 40,
-                    margin: 2,
-                    borderRadius: 12,
+                    height: 30,
+                    margin: 4,
+                    borderRadius: 8,
                     borderWidth: item.isActive ? 0 : 1,
                     backgroundColor: item.isActive ? '#007aff' : '#f2f2f7',
                     justifyContent: 'center',
