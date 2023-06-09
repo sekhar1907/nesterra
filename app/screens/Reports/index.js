@@ -227,5 +227,14 @@ import {
     //   // // borderRadius: 2,
       
     // },
+    // scroll: {
+    //   borderColor: 'blue',
+    //   borderRadius: 2,
+    //   // borderRadius: 2,
+    //   // borderColor: 'blue',
+    //   // borderRadius: 2,
+    //   // // borderRadius: 2,
+      
+    // },
   });
   
