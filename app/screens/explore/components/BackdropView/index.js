@@ -48,6 +48,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  // container: {
+  //   flex: 1,
+  //   padding: 24,
+  //   backgroundColor: 'grey',
+  // },
+  // contentContainer: {
+  //   flex: 1,
+  //   alignItems: 'center',
+  // },
 });
 
 export default BackdropView;
