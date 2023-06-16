@@ -11,4 +11,8 @@ const SiteCertified = () => {
 
 export default SiteCertified
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  header:{
+    width:'100%'
+  }
+})
