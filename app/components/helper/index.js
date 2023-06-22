@@ -33,6 +33,15 @@ export const success = msg => {
     placement: 'top',
   });
 };
+// export const success = msg => {
+//   Snackbar.show({
+//     text: `${msg}`,
+//     textColor: 'white',
+//     backgroundColor: '#4DD637',
+//     // marginBottom: 100,
+//     placement: 'top',
+//   });
+// };
 export const copyText = text => {
   Clipboard.setString(text);
 };
