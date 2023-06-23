@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  // container: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
 });
 
 export default CheckBoxComponet;
