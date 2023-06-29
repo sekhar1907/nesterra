@@ -184,11 +184,12 @@ const Circuits = ({get_orders_for_tab, get_order_details}) => {
           />
         </>
       )}
-      <AddButton
+    {switchView ? (  <AddButton
         onPress={() => {
           navigation.navigate('AddOrder');
         }}
       />
+      ) : null}
     </>
   );
 };
